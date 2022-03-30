@@ -7,13 +7,31 @@ class MyComponents extends React.Component {
         channel: 'facebook.com/hoangquan1811'
     }
 
-    render() {
+    handleClickButton = () => {
+        console.log('hit the button')
+        alert('Hello')
+    }
 
+    handleOnChangeName = (event) => {
+        console.log(event.target.value);
+        console.log('event target: ', event.target);
+        console.log('event object: ', event);
+        this.setState({
+            name: event.target.value
+        })
+    }
+
+    render() {
         return (
             <>
-                <div className="Hello">hello </div>
-                <div className="name">{this.state.name}</div>
-                <div className="channel">{this.state.channel}</div>
+                <div className="first">
+                    <input value={this.state.name} type="text" onChange={(event) => this.handleOnChangeName(event)} />
+                    My name is {this.state['name']}
+                </div>
+                <div className="second">My link facebook is: {this.state.channel}</div>
+                <div className="third">
+                    <button onClick={() => this.handleClickButton()}>Click me</button>
+                </div>
             </>
         );
     }
